@@ -2,7 +2,10 @@
   <div class="login-container">
     <div class="login">
       <input id="input-login" type="text" placeholder="Id" v-model="this.Id" />
-      <input id="btn-login" type="button" @click="saveId" value="Ingresar" />
+
+      <router-link id="btn-login" @click="saveId" to="/criptos"
+        >Ingresar</router-link
+      >
     </div>
   </div>
 </template>
@@ -44,6 +47,8 @@ export default {
   border: none;
   border-radius: 5px;
   padding: 5px;
+  text-decoration: none;
+  color: #000;
 }
 #input-login {
   background: #a2b5bb;
