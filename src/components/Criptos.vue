@@ -1,30 +1,11 @@
 <template>
   <div class="criptos">
-    <div class="cripto">
-      <img src="../assets/lemon.png" alt="Lemon cash" />
-      <h2>Lemon Cash</h2>
+    <div v-for="(cripto, index) in criptos" :key="index" class="cripto">
+      <img src="../assets/lemon.png" alt="BTC" />
+      <h2>{{ cripto }}</h2>
       <ul>
-        <li>Compra:</li>
-        <li>Venta:</li>
-        <li>Variacion:</li>
-      </ul>
-    </div>
-    <div class="cripto">
-      <img src="../assets/satoshi.png" alt="Lemon cash" />
-      <h2>SatoshiTango</h2>
-      <ul>
-        <li>Compra:</li>
-        <li>Venta:</li>
-        <li>Variacion:</li>
-      </ul>
-    </div>
-    <div class="cripto">
-      <img src="../assets/ripio.png" alt="Lemon cash" />
-      <h2>Ripio</h2>
-      <ul>
-        <li>Compra:</li>
-        <li>Venta:</li>
-        <li>Variacion:</li>
+        <li>Compra: ${{ compra[index] }}</li>
+        <li>Venta: ${{ venta[index] }}</li>
       </ul>
     </div>
   </div>
@@ -38,17 +19,25 @@ export default {
   data() {
     return {
       criptos: [],
+      compra: [],
+      venta: [],
     };
   },
   created() {
-    criptosService
-      .getCriptos()
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    let criptos = ["btc", "eth", "dai", "sol", "ada"];
+    criptos.forEach((cripto) => {
+      criptosService
+        .getCriptos(cripto)
+        .then(async (response) => {
+          await this.compra.push(response.data.ask);
+          await this.venta.push(response.data.bid);
+          await this.criptos.push(cripto);
+          console.log(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
   },
 };
 </script>

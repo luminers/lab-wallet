@@ -10,7 +10,7 @@ const apiClient = axios.create({
 });
 
 export default {
-  getCriptos() {
-    return apiClient.get("/dolar");
+  getCriptos(cripto) {
+    return apiClient.get("/satoshitango/" + cripto);
   },
 };
