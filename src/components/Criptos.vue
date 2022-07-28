@@ -1,12 +1,25 @@
 <template>
-  <div class="criptos">
-    <div v-for="(cripto, index) in criptos" :key="index" class="cripto">
-      <img src="../assets/lemon.png" alt="BTC" />
-      <h2>{{ cripto }}</h2>
-      <ul>
-        <li>Compra: ${{ compra[index] }}</li>
-        <li>Venta: ${{ venta[index] }}</li>
-      </ul>
+  <div class="m-3 d-flex flex-wrap mb-5">
+    <div
+      v-for="(cripto, index) in criptos"
+      :key="index"
+      class="card-body border m-3 p-3"
+    >
+      <img class="card-img-top" src="../assets/lemon.png" alt="BTC" />
+      <div class="card-text">
+        <h2 class="card-title">{{ cripto }}</h2>
+        <ul class="card-text">
+          <li>Compra: ${{ compra[index] }}</li>
+          <li>Venta: ${{ venta[index] }}</li>
+        </ul>
+        <router-link
+          id="btn-operar"
+          class="btn btn-primary"
+          @click="saveCripto(cripto)"
+          to="Trade"
+          >Operar</router-link
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -39,33 +52,17 @@ export default {
         });
     });
   },
+  methods: {
+    saveCripto(data) {
+      this.$store.state.Cripto = data;
+      console.log(this.$store.state.Cripto);
+    },
+  },
 };
 </script>
 
 <style scoped>
-div img {
-  width: 80px;
-}
-.criptos {
-  display: flex;
-  flex-flow: row wrap;
-}
-.cripto {
-  padding: 10px;
-  margin: 20px;
-  list-style: none;
-  border: 2px solid #feb139;
-  border-radius: 5px;
-  background: #f55353;
-  height: auto;
-  width: 40%;
-}
-.cripto li {
-  display: flex;
-  list-style: none;
-  border: 1px solid #f6f54d;
-  margin: 3px;
-  border-radius: 5px;
-  padding: 3px;
+img {
+  width: 100px;
 }
 </style>
