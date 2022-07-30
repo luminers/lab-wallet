@@ -70,7 +70,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000;
-  background: #143f6b;
+
   height: 100vh;
 }
 </style>

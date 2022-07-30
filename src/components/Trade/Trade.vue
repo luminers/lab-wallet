@@ -119,12 +119,15 @@ export default {
       cantidad: null,
     };
   },
+  props: {
+    CriptoAOperar: String,
+  },
   methods: {
     ElegirCripto(cripto) {
       this.CriptoElegida = cripto;
       console.log(this.CriptoElegida);
       criptosService
-        .getCriptos(cripto)
+        .getCriptos(this.CriptoElegida)
         .then((response) => {
           this.precio = response.data.ask;
 
@@ -139,6 +142,9 @@ export default {
     calcularTotal() {
       return this.cantidad * this.precio;
     },
+  },
+  mounted() {
+    this.ElegirCripto(this.CriptoAOperar);
   },
 };
 </script>

@@ -3,7 +3,7 @@
     <div
       v-for="(cripto, index) in criptos"
       :key="index"
-      class="card-body border m-3 p-3"
+      class="card-body border rounded m-3 p-3"
     >
       <img class="card-img-top" src="../assets/lemon.png" alt="BTC" />
       <div class="card-text">
@@ -45,7 +45,6 @@ export default {
           await this.compra.push(response.data.ask);
           await this.venta.push(response.data.bid);
           await this.criptos.push(cripto);
-          console.log(response.data);
         })
         .catch((err) => {
           console.log(err);

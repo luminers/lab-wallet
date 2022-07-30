@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <Trade />
+    <Trade :CriptoAOperar="this.$store.state.Cripto" />
   </div>
 </template>
 
