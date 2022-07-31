@@ -37,7 +37,7 @@ export default {
     };
   },
   created() {
-    let criptos = ["btc", "eth", "dai", "sol", "ada"];
+    let criptos = ["btc", "eth", "dai", "sol", "ada", "ltc"];
     criptos.forEach((cripto) => {
       criptosService
         .getCriptos(cripto)

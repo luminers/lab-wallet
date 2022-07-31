@@ -51,11 +51,16 @@
       />
     </div>
 
+    <div v-if="validacion" class="alert alert-danger" role="alert">
+      La cantidad a comprar debe ser un número mayor a 0. Ej: 0.001
+    </div>
+
     <button
       type="button"
       class="btn btn-primary"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
+      @click="validar()"
     >
       Comprar
     </button>
@@ -67,6 +72,7 @@
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
+      v-if="this.cantidad > 0"
     >
       <div class="modal-dialog">
         <div class="modal-content">
@@ -117,6 +123,7 @@ export default {
       CriptoElegida: this.$store.state.Cripto,
       precio: 0,
       cantidad: null,
+      validacion: false,
     };
   },
   props: {
@@ -136,6 +143,13 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    validar() {
+      if (this.cantidad <= 0) {
+        this.validacion = true;
+      } else {
+        this.validacion = false;
+      }
     },
   },
   computed: {
