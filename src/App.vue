@@ -19,7 +19,7 @@
             <a class="nav-link active" aria-current="page" href="#">Criptos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Trade</a>
+            <a class="nav-link">Trade</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Dashboard</a>
@@ -48,9 +48,9 @@
 
   <router-view />
 
-  <footer class="text-center text-white fixed-bottom">
+  <footer class="text-center text-white bottom">
     <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: #143f6b">
+    <div class="text-center p-3" style="background-color: #111">
       © 2022 Copyright:
       <a class="text-white" href="">Joaquin Nunez</a>
     </div>
@@ -70,7 +70,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000;
-
-  height: 100vh;
 }
 </style>

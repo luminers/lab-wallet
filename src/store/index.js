@@ -4,9 +4,17 @@ export default createStore({
   state: {
     Id: "",
     Cripto: "",
+    loggedIn: false,
   },
   getters: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+  mutations: {
+    loggedIn(state) {
+      state.loggedIn = true;
+    },
+  },
+  actions: {
+    mockLogin(context) {
+      context.commit("loggedIn");
+    },
+  },
 });

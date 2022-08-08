@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "LoginComponent",
   data() {
@@ -22,8 +24,10 @@ export default {
   methods: {
     saveId() {
       this.$store.state.Id = this.Id;
+      this.mockLogin();
       console.log(this.$store.state.Id);
     },
+    ...mapActions(["mockLogin"]),
   },
 };
 </script>
@@ -32,11 +36,12 @@ export default {
 <style scoped>
 .login-container {
   background: #f5eddc;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 #btn-login {

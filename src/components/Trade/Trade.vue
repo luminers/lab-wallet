@@ -51,7 +51,7 @@
       />
     </div>
 
-    <div v-if="validacion" class="alert alert-danger" role="alert">
+    <div v-show="validacion" class="alert alert-danger" role="alert">
       La cantidad a comprar debe ser un número mayor a 0. Ej: 0.001
     </div>
 
@@ -103,9 +103,12 @@
             >
               Cancelar
             </button>
-            <button type="button" class="btn btn-primary">
-              Confirmar compra
-            </button>
+            <input
+              type="button"
+              value="Confirmar compra"
+              class="btn btn-primary"
+              @click="comprar()"
+            />
           </div>
         </div>
       </div>
@@ -115,6 +118,8 @@
 
 <script>
 import criptosService from "@/services/criptosService";
+import restdbService from "@/services/restdbService";
+import store from "@/store";
 
 export default {
   name: "TradeComponent",
@@ -132,13 +137,11 @@ export default {
   methods: {
     ElegirCripto(cripto) {
       this.CriptoElegida = cripto;
-      console.log(this.CriptoElegida);
+      //console.log(this.CriptoElegida);
       criptosService
         .getCriptos(this.CriptoElegida)
         .then((response) => {
           this.precio = response.data.ask;
-
-          console.log(response.data);
         })
         .catch((err) => {
           console.log(err);
@@ -151,14 +154,50 @@ export default {
         this.validacion = false;
       }
     },
+    comprar() {
+      let transaccion = {
+        user_id: this.$store.state.Id,
+        action: "purchase",
+        crypto_code: this.CriptoElegida,
+        crypto_amount: String(this.cantidad),
+        money: String(this.calcularTotal),
+        datetime: this.formatDate,
+      };
+
+      console.log(transaccion);
+
+      restdbService
+        .postTransaccion(transaccion)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
   },
   computed: {
     calcularTotal() {
-      return this.cantidad * this.precio;
+      let total = this.cantidad * this.precio;
+
+      return total.toFixed(2);
+    },
+    formatDate() {
+      let today = new Date();
+      let dd = String(today.getDate()).padStart(2, "0");
+      let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+      let yyyy = today.getFullYear();
+      let hh = today.getHours();
+      let ss = today.getMinutes();
+
+      today = dd + "-" + mm + "-" + yyyy + " " + hh + ":" + ss;
+
+      return today;
     },
   },
   mounted() {
     this.ElegirCripto(this.CriptoAOperar);
+    console.log(store.state.Id);
   },
 };
 </script>
