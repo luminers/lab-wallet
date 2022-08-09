@@ -28,6 +28,16 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/TradeView.vue"),
     meta: { requiresAuth: true },
   },
+  {
+    path: "/history",
+    name: "history",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/HistoryView.vue"),
+    meta: { requiresAuth: true },
+  },
 ];
 
 const router = createRouter({

@@ -18,6 +18,6 @@ export default {
     });
   },
   getHistory() {
-    return apiClient.get(`/transactions?q={'user_id': "${store.state.Id}"} `);
+    return apiClient.get(`/transactions?q={"user_id": "${store.state.Id}"} `);
   },
 };

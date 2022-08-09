@@ -22,7 +22,9 @@
             <a class="nav-link">Trade</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Dashboard</a>
+            <router-link id="btn-login" class="nav-link" to="/history"
+              >Historial</router-link
+            >
           </li>
           <li class="nav-item dropdown">
             <a
