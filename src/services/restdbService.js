@@ -20,4 +20,11 @@ export default {
   getHistory() {
     return apiClient.get(`/transactions?q={"user_id": "${store.state.Id}"} `);
   },
+  patchTransaccion(transaction) {
+    apiClient.patch(`/transactions/${transaction.id}`, {
+      crypto_amount: transaction.crypto_amount,
+      money: transaction.money,
+      datetime: transaction.datetime,
+    });
+  },
 };
