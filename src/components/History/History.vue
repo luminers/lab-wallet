@@ -30,6 +30,7 @@
               class="btn btn-primary"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
+              @click="this.setIndex = index"
             >
               &#9999;
             </button>
@@ -58,20 +59,27 @@
                   <div class="modal-body">
                     <div class="alert alert-primary" role="alert">
                       Editar cantidad:
-                      <input type="number" min="0" name="" id="" />
+                      <input
+                        v-model="this.amount"
+                        type="number"
+                        min="0"
+                        name=""
+                        id=""
+                      />
                       <br />
-                      Actual: {{ element.money }}
+                      Actual: {{ this.history[this.setIndex].crypto_amount }}
                     </div>
                     <div class="alert alert-primary" role="alert">
                       Editar precio:
-                      <input type="number" min="0" name="" id="" />
+                      <input
+                        v-model="this.money"
+                        type="number"
+                        min="0"
+                        name=""
+                        id=""
+                      />
                       <br />
-                      Actual: {{ element.crypto_amount }}
-                    </div>
-                    <div class="alert alert-primary" role="alert">
-                      Editar fecha: <input type="date" name="" id="" />
-                      <br />
-                      Actual: {{ element.datetime }}
+                      Actual: {{ this.history[this.setIndex].money }}
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -91,6 +99,7 @@
                       type="button"
                       value="Confirmar edición"
                       class="btn btn-primary"
+                      @click="edit()"
                     />
                   </div>
                 </div>
@@ -116,14 +125,18 @@ export default {
     return {
       history: null,
       loading: true,
+      id: null,
+      setIndex: 0,
+      amount: null,
+      money: null,
     };
   },
   methods: {
     edit() {
       let transaccion = {
-        crypto_amount: String(this.cantidad),
-        money: String(this.calcularTotal),
-        datetime: this.formatDate,
+        id: this.history[this.setIndex]._id,
+        crypto_amount: String(this.amount),
+        money: String(this.money),
       };
 
       console.log(transaccion);
