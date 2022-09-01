@@ -5,7 +5,11 @@
       :key="index"
       class="card-body border rounded m-3 p-3"
     >
-      <img class="card-img-top" src="../assets/lemon.png" alt="BTC" />
+      <img
+        class="card-img-top"
+        src="@/assets/{{ this.img[index] }}"
+        alt="cripto"
+      />
       <div class="card-text">
         <h2 class="card-title">{{ cripto }}</h2>
         <ul class="card-text">
@@ -34,6 +38,7 @@ export default {
       criptos: [],
       compra: [],
       venta: [],
+      img: [],
     };
   },
   created() {
@@ -45,6 +50,7 @@ export default {
           await this.compra.push(response.data.ask);
           await this.venta.push(response.data.bid);
           await this.criptos.push(cripto);
+          await this.img.push(cripto + ".png");
         })
         .catch((err) => {
           console.log(err);
@@ -63,5 +69,9 @@ export default {
 <style scoped>
 img {
   width: 100px;
+}
+
+li {
+  list-style: none;
 }
 </style>
