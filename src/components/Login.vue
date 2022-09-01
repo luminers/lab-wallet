@@ -11,8 +11,6 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-
 export default {
   name: "LoginComponent",
   data() {
@@ -24,10 +22,9 @@ export default {
   methods: {
     saveId() {
       this.$store.state.Id = this.Id;
-      this.mockLogin();
+      localStorage.Id = this.Id;
       console.log(this.$store.state.Id);
     },
-    ...mapActions(["mockLogin"]),
   },
 };
 </script>

@@ -58,18 +58,6 @@
                   </div>
                   <div class="modal-body">
                     <div class="alert alert-primary" role="alert">
-                      Editar cantidad:
-                      <input
-                        v-model="this.amount"
-                        type="number"
-                        min="0"
-                        name=""
-                        id=""
-                      />
-                      <br />
-                      Actual: {{ this.history[this.setIndex].crypto_amount }}
-                    </div>
-                    <div class="alert alert-primary" role="alert">
                       Editar precio:
                       <input
                         v-model="this.money"
@@ -80,6 +68,9 @@
                       />
                       <br />
                       Actual: {{ this.history[this.setIndex].money }}
+                    </div>
+                    <div v-if="error" class="alert alert-danger" role="alert">
+                      El nuevo precio debe ser mayor a 0
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -127,28 +118,33 @@ export default {
       loading: true,
       id: null,
       setIndex: 0,
-      amount: null,
       money: null,
+      error: false,
     };
   },
   methods: {
     edit() {
+      this.error = false;
+
       let transaccion = {
         id: this.history[this.setIndex]._id,
-        crypto_amount: String(this.amount),
         money: String(this.money),
       };
 
       console.log(transaccion);
 
-      restdbService
-        .patchTransaccion(transaccion)
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      if (transaccion.money > 0) {
+        restdbService
+          .patchTransaccion(transaccion)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      } else {
+        this.error = true;
+      }
     },
   },
   created() {
