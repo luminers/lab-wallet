@@ -3,7 +3,7 @@
     <div
       v-for="(cripto, index) in criptos"
       :key="index"
-      class="card-body border rounded m-3 p-3"
+      class="card-body border rounded m-3 p-3 w-25"
     >
       <img class="card-img-top" :src="this.img[index]" alt="cripto" />
       <div class="card-text">

@@ -1,11 +1,27 @@
 <template>
   <div class="login-container">
+    <div class="alerta card h-auto w-75 border rounded m-3 p-3">
+      <h4>🤖 Bienvenido a CriptoSim 🤖</h4>
+      <h4>
+        CriptoSim es una plataforma que te permite realizar transacciones de
+        diferentes criptos con sus precios reales y actualizados minuto a
+        minuto. Te permite simular de una manera sencilla tus inversiones en
+        criptomonedas y visualizar tus estadisticas con el paso del tiempo con
+        el valor real de las criptos.
+      </h4>
+    </div>
+
     <div class="login">
       <input id="input-login" type="text" placeholder="Id" v-model="this.Id" />
 
       <router-link id="btn-login" @click="saveId" to="/criptos"
         >Ingresar</router-link
       >
+    </div>
+
+    <div class="alerta alert mt-3">
+      Tu Id es necesario para poder hacer un seguimientos de tus futuras
+      transacciones en CriptoSim
     </div>
   </div>
 </template>
@@ -39,6 +55,7 @@ export default {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  flex-flow: column nowrap;
 }
 
 #btn-login {
@@ -70,5 +87,9 @@ export default {
 #btn-login:hover {
   background: #ff001e;
   cursor: pointer;
+}
+
+.alerta {
+  background-color: #cfd2cf;
 }
 </style>
