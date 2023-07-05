@@ -21,10 +21,28 @@
                 >Criptos</router-link
               >
             </li>
-            <li class="nav-item">
-              <router-link id="btn-login" class="nav-link" to="/Trade"
-                >Trade</router-link
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
+                Trade
+              </a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <router-link id="btn-login" class="nav-link" to="/Trade"
+                    >Comprar</router-link
+                  >
+                </li>
+                <li class="dropdown-item">
+                  <router-link id="btn-login" class="nav-link" to="/Trade2"
+                    >Vender</router-link
+                  >
+                </li>
+              </ul>
             </li>
             <li class="nav-item">
               <router-link id="btn-login" class="nav-link" to="/history"
@@ -46,7 +64,9 @@
 
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                  <a class="dropdown-item" href="#">Cerrar sesión</a>
+                  <router-link id="btn-login" class="nav-link" to="/"
+                    >Cerrar sesión</router-link
+                  >
                 </li>
               </ul>
             </li>
@@ -61,7 +81,12 @@
       <!-- Copyright -->
       <div class="text-center p-3" style="background-color: #111">
         © 2022 Copyright:
-        <a class="text-white" href="">Joaquin Nunez</a>
+        <a
+          class="text-white"
+          target="_blank"
+          href="https://www.linkedin.com/in/nu%C3%B1ezjoaquin"
+          >Joaquin Nunez</a
+        >
       </div>
       <!-- Copyright -->
     </footer>
