@@ -1,5 +1,5 @@
 <template>
-  <div class="container aling-self-center w-50">
+  <div class="container w-50 trade-container">
     <div class="dropdown">
       <button
         class="btn btn-secondary dropdown-toggle my-2 w-100"
