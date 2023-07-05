@@ -60,7 +60,11 @@
                 Wallet
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Estado actual</a></li>
+                <li>
+                  <router-link id="btn-login" class="nav-link" to="/Balance"
+                    >Estado actual</router-link
+                  >
+                </li>
 
                 <li><hr class="dropdown-divider" /></li>
                 <li>
