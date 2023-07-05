@@ -21,8 +21,18 @@
           >
         </li>
         <li>
-          <a class="dropdown-item" @click="ElegirCripto('DAI')" value="DAI"
-            >DAI</a
+          <a class="dropdown-item" @click="ElegirCripto('eth')" value="DAI"
+            >ETH</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item" @click="ElegirCripto('ltc')" value="DAI"
+            >LTC</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item" @click="ElegirCripto('SOL')" value="DAI"
+            >SOL</a
           >
         </li>
       </ul>
